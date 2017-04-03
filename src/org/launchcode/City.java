@@ -19,6 +19,7 @@ public class City {
         this.state = state;
         this.population = population;
         this.area = area;
+//        System.out.println("C.22. " + this.name + " " + this.state + " " + this.population + " " + this.area);
     }
 
     public static String getTableHeader() {
