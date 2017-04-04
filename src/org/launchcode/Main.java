@@ -1,10 +1,10 @@
 package org.launchcode;
 
-import org.launchcode.comparators.NameComparator;
-import org.launchcode.comparators.StateComparator;
-import org.launchcode.comparators.PopulationComparator;
+import org.launchcode.comparators.*;
 
 import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
 
 public class Main {
 
@@ -20,13 +20,22 @@ public class Main {
         ArrayList<City> states = CityData.loadData();
         StateComparator comparatorS = new StateComparator();
         states.sort(comparatorS);
-//        printCities(states);
+        printCities(states);
 
         ArrayList<City> population = CityData.loadData();
         PopulationComparator comparatorP = new PopulationComparator();
         population.sort(comparatorP);
         printCities(population);
 
+        ArrayList<City> area = CityData.loadData();
+        AreaComparator comparatorA = new AreaComparator();
+        area.sort(comparatorA);
+//        printCities(area);
+
+    List<Comparator<City>> comparators = new ArrayList<Comparator<City>>();
+    CompoundComparator comparer = new CompoundComparator();
+    comparer.add(new StateComparator());
+    comparer.add(new PopulationComparator());
     }
 
     private static void printCities(ArrayList<City> cities) {
@@ -39,13 +48,5 @@ public class Main {
 
     }
 
-    private static void printStates(ArrayList<City> cities) {
 
-        System.out.println(City.getTableHeader());
-
-        for(City c : cities) {
-            System.out.println(c);
-        }
-
-    }
 }
